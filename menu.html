@@ -1,0 +1,199 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Ocean Breeze Bistro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Ocean Breeze Bistro</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="menu-section">
+        <h2>Our Menu</h2>
+
+        <h3>Starters</h3>
+        <div class="cards">
+            <div class="card">
+                <img src="images/shrimp-cocktail.jpg" alt="Shrimp Cocktail">
+                <h4>Shrimp Cocktail</h4>
+                <p>Chilled shrimp served with zesty cocktail sauce.</p>
+            </div>
+            <div class="card">
+                <img src="images/mussels.jpg" alt="Steamed Mussels">
+                <h4>Steamed Mussels</h4>
+                <p>Mussels cooked in garlic and white wine sauce.</p>
+            </div>
+        </div>
+
+        <h3>Main Courses</h3>
+        <div class="cards">
+            <div class="card">
+                <img src="images/grilled-lobster.jpg" alt="Grilled Lobster">
+                <h4>Grilled Lobster</h4>
+                <p>Succulent lobster grilled with lemon butter.</p>
+            </div>
+            <div class="card">
+                <img src="images/seared-salmon.jpg" alt="Seared Salmon">
+                <h4>Seared Salmon</h4>
+                <p>Fresh Atlantic salmon with honey glaze.</p>
+            </div>
+            <div class="card">
+                <img src="images/seafood-paella.jpg" alt="Seafood Paella">
+                <h4>Seafood Paella</h4>
+                <p>A classic Spanish dish with shrimp, mussels, and clams.</p>
+            </div>
+        </div>
+
+        <h3>Desserts</h3>
+        <div class="cards">
+            <div class="card">
+                <img src="images/key-lime-pie.jpg" alt="Key Lime Pie">
+                <h4>Key Lime Pie</h4>
+                <p>Refreshing citrus pie with a buttery crust.</p>
+            </div>
+            <div class="card">
+                <img src="images/chocolate-mousse.jpg" alt="Chocolate Mousse">
+                <h4>Chocolate Mousse</h4>
+                <p>Rich and creamy chocolate mousse topped with whipped cream.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Ocean Breeze Bistro | Designed by You</p>
+    </footer>
+</body>
+</html>
+
+<!-- Reservation Button -->
+<div style="text-align: center; margin: 30px 0;">
+    <button id="reserveBtn" class="btn">Reserve a Table</button>
+</div>
+
+<!-- Reservation Modal -->
+<div id="reserveModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Reserve a Table</h2>
+        <form class="contact-form" action="#" method="POST">
+            <label for="res-name">Full Name</label>
+            <input type="text" id="res-name" name="res-name" placeholder="Your Name" required>
+
+            <label for="res-email">Email</label>
+            <input type="email" id="res-email" name="res-email" placeholder="Your Email" required>
+
+            <label for="res-phone">Phone Number</label>
+            <input type="tel" id="res-phone" name="res-phone" placeholder="Your Phone Number">
+
+            <label for="res-date">Date</label>
+            <input type="date" id="res-date" name="res-date" required>
+
+            <label for="res-time">Time</label>
+            <input type="time" id="res-time" name="res-time" required>
+
+            <label for="res-guests">Number of Guests</label>
+            <input type="number" id="res-guests" name="res-guests" min="1" max="20" required>
+
+            <button type="submit">Submit Reservation</button>
+        </form>
+    </div>
+</div>
+
+<script>
+// Get modal elements
+const modal = document.getElementById("reserveModal");
+const btn = document.getElementById("reserveBtn");
+const span = document.getElementsByClassName("close")[0];
+
+// Open modal when button is clicked
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// Close modal when "x" is clicked
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Close modal when clicking outside the modal content
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+<form class="contact-form" action="https://formspree.io/f/yourformid" method="POST">
+
+<script>
+const modal = document.getElementById("reserveModal");
+const btn = document.getElementById("reserveBtn");
+const span = document.getElementsByClassName("close")[0];
+const form = modal.querySelector("form");
+const successMessage = document.getElementById("successMessage");
+
+// Open modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// Close modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Close modal on outside click
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Handle form submit with fetch
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            successMessage.style.display = "block";
+            form.reset();
+        } else {
+            alert("Oops! There was a problem submitting your reservation.");
+        }
+    }).catch(error => {
+        alert("Oops! There was a problem submitting your reservation.");
+    });
+});
+</script>
+
+<section class="menu-categories">
+    <div class="category-card fade-in">
+        <img src="images/seafood-icon.png" alt="Seafood Icon">
+        <h3>Seafood</h3>
+    </div>
+    <div class="category-card fade-in">
+        <img src="images/drinks-icon.png" alt="Drinks Icon">
+        <h3>Drinks</h3>
+    </div>
+    <div class="category-card fade-in">
+        <img src="images/desserts-icon.png" alt="Desserts Icon">
+        <h3>Desserts</h3>
+    </div>
+</section>
